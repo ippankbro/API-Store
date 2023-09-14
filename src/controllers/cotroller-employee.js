@@ -3,6 +3,7 @@ const mysql = require("mysql");
 const pool = mysql.createPool(config);
 
 module.exports = {
+  //get all data employee
   getEmployee(req, res) {
     pool.getConnection((err, connection) => {
       if (err) throw err;
@@ -17,6 +18,7 @@ module.exports = {
       connection.release();
     });
   },
+  //get employee data
   getEmployeeById(req, res) {
     let id = req.params.id;
 
@@ -37,7 +39,7 @@ module.exports = {
       connection.release();
     });
   },
-
+  //add new employee data
   addEmployee(req, res) {
     const { name, age, address, position } = req.body;
     let data = {
@@ -64,7 +66,7 @@ module.exports = {
       connection.release();
     });
   },
-  // Update data karyawan
+  // Update employee data
   editEmployee(req, res) {
     const { name, age, address, position } = req.body;
     let data = {
@@ -92,7 +94,7 @@ module.exports = {
       connection.release();
     });
   },
-  // Delete data karyawan
+  // Delete Employee data
   deleteEmployee(req, res) {
     let id = req.params.id;
     pool.getConnection(function (err, connection) {
